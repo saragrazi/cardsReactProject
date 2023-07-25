@@ -11,8 +11,6 @@ const ROUTES = {
     USER_PROFILE: "/user-profile",
     CREATE_CARD: "/create-card",
     EDIT_CARD: "/edit-card",
-    ADMIN_PANEL: "/admin-panel",
-    // EDIT_PROFILE:"/edit-profile",
 };
 
 export default ROUTES;
