@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
     if (!user) {
       const userFromLocaleStorage = getUser();
       setUser(userFromLocaleStorage);
+      setToken(localStorage?.getItem("token")); // כאן הוספתי את השורה הזאת כדי שבכל בפעם שעושים REFRESH הוא יקרא אם יש יוזר 
     }
   }, [user]);
 

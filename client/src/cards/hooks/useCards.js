@@ -106,7 +106,7 @@ const useCards = () => {
         try {
             setPending(true);
             const card = await likeCard(cardId);
-            requestStatus(false, null, null, card, );
+            // requestStatus(false, null, null, card, );
         } catch (error) {
             requestStatus(false, error, null, null);
         }

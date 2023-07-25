@@ -15,6 +15,7 @@ import cardType from "../../models/types/cardType";
 const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
   const { user } = useUser();
   const navigate = useNavigate();
+  console.log(setCards);
   const { handleLikeCard, handleDeleteCard } = useCards();
   const { onDelete, onLike, localLike, setLocalLike } = useCardActionBar(
     handleDeleteCard,
@@ -88,12 +89,12 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
   );
 };
 
-CardActionBar.propTypes = {
-  cardId: string.isRequired,
-  userId: string.isRequired,
-  card: cardType.isRequired,
-  cards: array.isRequired,
-  setCards: func,
-};
+// CardActionBar.propTypes = {
+//   cardId: string.isRequired,
+//   userId: string.isRequired,
+//   card: cardType.isRequired,
+//   cards: array.isRequired,
+//   setCards: func,
+// };
 
 export default CardActionBar;
