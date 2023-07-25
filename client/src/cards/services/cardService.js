@@ -49,7 +49,7 @@ export const editCard = async card => {
 
 export const likeCard = async cardId => {
     try {
-        const { data } = await axios.put(`${apiUrl}/cards/${cardId}`);
+        const { data } = await axios.patch(`${apiUrl}/cards/${cardId}`);
         return Promise.resolve(data);
     } catch (error) {
         return Promise.reject(error.messgae);

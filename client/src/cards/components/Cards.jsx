@@ -4,7 +4,7 @@ import CardComponent from "./card/Card";
 import { arrayOf } from "prop-types";
 import cardType from "../models/types/cardType";
 
-const Cards = ({ cards }) => {
+const Cards = ({ cards,setCards }) => {
   const onLike = (cardId) => console.log(`you liked card no:${cardId}`);
   const onDelete = (cardId) => console.log(`you deleted card no:${cardId}`);
   const onEdit = (cardId) => console.log(`you edited card no:${cardId}`);
@@ -18,6 +18,8 @@ const Cards = ({ cards }) => {
             onDelete={onDelete}
             onEdit={onEdit}
             card={card}
+            cards={cards}
+            setCards={setCards}
           />
         </Grid>
       ))}
@@ -26,7 +28,7 @@ const Cards = ({ cards }) => {
 };
 
 Cards.propTypes = {
-  cards: arrayOf(cardType).isRequired,
+  cards: arrayOf(cardType),
 };
 
 export default Cards;

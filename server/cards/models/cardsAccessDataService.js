@@ -3,7 +3,7 @@ const { handleBadRequest } = require("../../utils/handleErrors");
 
 const DB = process.env.DB || "MONGODB";
 
-const getCards = async() => {
+const getCards = async () => {
     if (DB === "MONGODB") {
         try {
             const cards = await Card.find();
@@ -57,7 +57,7 @@ const createCard = async normalizedCard => {
     return Promise.resolve("createCard card not in mongodb");
 };
 
-const updateCard = async(cardId, normalizedCard) => {
+const updateCard = async (cardId, normalizedCard) => {
     if (DB === "MONGODB") {
         try {
             let card = await Card.findByIdAndUpdate(cardId, normalizedCard, {
@@ -76,7 +76,7 @@ const updateCard = async(cardId, normalizedCard) => {
     return Promise.resolve("card updateCard not in mongodb");
 };
 
-const likeCard = async(cardId, userId) => {
+const likeCard = async (cardId, userId) => {
     if (DB === "MONGODB") {
         try {
             let card = await Card.findById(cardId);
@@ -103,16 +103,13 @@ const likeCard = async(cardId, userId) => {
     return Promise.resolve("card likeCard not in mongodb");
 };
 
-const deleteCard = async(cardId, user) => {
+const deleteCard = async (cardId, user) => {
     if (DB === "MONGODB") {
         try {
             let card = await Card.findById(cardId);
 
             if (!card)
                 throw new Error("A card with this ID cannot be found in the database");
-
-            console.log(user._id)
-            console.log(card.user_id)
 
             if (!user.isAdmin && user._id !== card.user_id)
                 throw new Error(

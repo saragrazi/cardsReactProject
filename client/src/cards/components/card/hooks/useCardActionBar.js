@@ -11,7 +11,7 @@ const useCardActionBar = (handleDeleteCard, handleLikeCard, setCards, cards) => 
             try {
                 handleDeleteCard(cardId)
                     //
-                    // setCards(() => cards.filter((card) => card._id !== cardId));
+                setCards(() => cards.filter((card) => card._id !== cardId));
             } catch (err) {
                 setSnack("error", err.message)
             }
