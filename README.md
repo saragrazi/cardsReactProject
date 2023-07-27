@@ -17,7 +17,7 @@ To run the app, follow these steps:
 
    Start the application:
 
-   run
+   run on the client folder -
 
    'npm start' and navigate your browser to "http://localhost:3000"
 
