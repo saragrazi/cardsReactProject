@@ -38,12 +38,12 @@ export const createCard = async card => {
     }
 };
 
-export const editCard = async card => {
+export const editCard = async(card, cardId) => {
     try {
-        const { data } = await axios.put(`${apiUrl}/cards`, card);
-        return Promise.resolve(data);
+        const { data } = await axios.put(`${apiUrl}/cards/${cardId}`, card);
+        return data;
     } catch (error) {
-        return Promise.reject(error.messgae);
+        return Promise.reject(error.message);
     }
 };
 

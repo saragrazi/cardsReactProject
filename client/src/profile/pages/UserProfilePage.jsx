@@ -8,8 +8,7 @@ import useForm from "../../forms/hooks/useForm";
 import EditUserForm from "../components/EditUserForm";
 import initialEditForm from "../../users/helpers/initial-forms/initialEditForm";
 import editSchema from "../../users/models/joi-schema/editSchema";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-
+import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 const UserProfilePage = () => {
   const { getUserProfile, handleEditUser, userData, setUserId, open, setOpen } =
     useUserProfile();
@@ -60,7 +59,11 @@ const UserProfilePage = () => {
   return (
     <>
       <Container maxWidth="lg">
-        <PageHeader textAlign={"center"} title="User Details" />
+        <PageHeader
+          textAlign={"center"}
+          title="User Profile"
+          subtitle="Here you can see your details"
+        />
 
         <Grid justifyContent={"center"} container spacing={0}>
           <Grid item xs={10} md={6} lg={8} alignSelf="center">
@@ -104,7 +107,7 @@ const UserProfilePage = () => {
                 variant={open ? "contained" : "outlined"}
                 onClick={handleFormOpen}
               >
-                {open ? <ExitToAppIcon /> : "Edit Details"}
+                {open ? <CancelPresentationIcon /> : "Edit Details"}
               </Button>
             </Box>
           </Grid>

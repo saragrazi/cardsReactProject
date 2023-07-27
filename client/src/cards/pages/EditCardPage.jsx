@@ -1,15 +1,14 @@
-import { Navigate, useParams } from "react-router-dom";
-import { useUser } from "../../users/providers/UserProvider";
+import React, { useEffect } from "react";
 import useCards from "../hooks/useCards";
+import { useUser } from "../../users/providers/UserProvider";
 import useForm from "../../forms/hooks/useForm";
-import cardSchema from "../models/joi-schema/cardSchema";
 import initialCardForm from "../helpers/initial-forms/initialCardForm";
+import cardSchema from "../models/joi-schema/cardSchema";
 import ROUTES from "../../routes/routesModel";
-import { useEffect } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import { Container } from "@mui/material";
-// import Input from "../../forms/components/Input";
-import { getCard } from "../services/cardService";
 import CardForm from "../components/CardForm";
+import { getCard } from "../services/cardService";
 
 const EditCardPage = () => {
   const { handleUpdateCard, setCardId } = useCards();
@@ -44,10 +43,9 @@ const EditCardPage = () => {
       });
     };
     cardData();
-    // eslint-disable-next-line
   }, []);
 
-  if (!user) return <Navigate replace to={ROUTES.CARDS} />;
+  if (!user || !user.isBusiness) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (
     <Container
@@ -66,16 +64,7 @@ const EditCardPage = () => {
         onFormChange={rest.validateForm}
         onInputChange={rest.handleChange}
         data={value.data}
-      >
-        {/* <Input
-          name="title"
-          label="title"
-          error={value.errors.title}
-          onChange={rest.handleChange}
-          data={value.data}
-          sm={6}
-        /> */}
-      </CardForm>
+      />
     </Container>
   );
 };

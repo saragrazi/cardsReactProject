@@ -5,23 +5,14 @@ import PageHeader from "../../components/PageHeader";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import { Container, Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import AddCardIcon from "@mui/icons-material/AddCard";
 import CardsFeedback from "../components/CardsFeedback";
-// import useContext from "react";
-// import { searchContext } from "../../providers/SearchProvider";
 
 const MyCardsPage = () => {
   const { user } = useUser();
   const { pending, error, cards, handleGetMyCards } = useCards();
-  // const { searchQuery } = useContext(searchContext);
   const navigate = useNavigate();
 
-  // let filtered = [];
-  // if (searchQuery.length > 0) {
-  //   filtered = cards?.filter((card) => card?.title.match(searchQuery));
-  // } else {
-  //   filtered = cards;
-  // }
   useEffect(() => {
     if (!user || !user.isBusiness) navigate(ROUTES.CARDS);
     else handleGetMyCards();
@@ -39,12 +30,11 @@ const MyCardsPage = () => {
         aria-label="add card"
         sx={{ position: "absolute", bottom: 75, right: 15 }}
       >
-        <AddIcon />
+        <AddCardIcon />
       </Fab>
       <CardsFeedback
         pending={pending}
         error={error}
-        // cards={filtered}
         onDelete={() => {}}
         cards={cards}
       />

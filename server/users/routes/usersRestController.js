@@ -11,6 +11,7 @@ const {
     updateUser,
     changeUserBusinessStatus,
     deleteUser,
+    logUserLoginFail,
 } = require("../models/usersAccessDataService");
 
 const {
@@ -43,10 +44,14 @@ router.post("/login", async(req, res) => {
         const { error } = validateLogin(user);
         if (error)
             return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
-
         const token = await loginUser(req.body);
         return res.send(token);
     } catch (error) {
+        try {
+            await logUserLoginFail(req.body.email, req.ip)
+        } catch (error) {
+            return handleError(res, error.status || 403, error.message);
+        }
         return handleError(res, error.status || 500, error.message);
     }
 });
@@ -87,46 +92,26 @@ router.get("/:id", auth, async(req, res) => {
     }
 });
 
-router.post("/addFavorite/:id", auth, async(req, res) => {
-    try {
-        const { id } = req.params;
-        const { _id, isAdmin } = req.user;
-        const { cardId } = req.body;
-
-        if (_id !== id && !isAdmin)
-            return handleError(
-                res,
-                403,
-                "Authorization Error: You must be an admin type user or the registered user to see this user details"
-            );
-
-        const user = await addFavorites(id, cardId);
-        return res.send(user);
-    } catch (error) {
-        return handleError(res, error.status || 500, error.message);
-    }
-});
-
-router.put("/:id", async(req, res) => {
+router.put("/:id", auth, async(req, res) => {
     try {
         const { id } = req.params;
         let user = req.body;
         const { error } = validateUserUpdate(user);
         if (error)
             return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
-
-        user = normalizeUser(user);
-        user = await updateUser(id, user);
+        const normalized = normalizeUser(user);
+        user = await updateUser(id, normalized);
         return res.send(user);
     } catch (error) {
         return handleError(res, error.status || 500, error.message);
     }
 });
 
-router.patch("/:id", async(req, res) => {
+router.patch("/:id", auth, async(req, res) => {
     try {
         const { id } = req.params;
-        const user = await changeUserBusinessStatus(id);
+        const { status } = req.body;
+        const user = await changeUserBusinessStatus(id, status);
         return res.send(user);
     } catch (error) {
         return handleError(res, error.status || 500, error.message);

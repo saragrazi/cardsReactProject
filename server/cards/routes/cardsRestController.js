@@ -63,7 +63,6 @@ router.post("/", auth, async(req, res) => {
         return handleError(res, error.status || 500, error.message);
     }
 });
-
 router.put("/:id", auth, async(req, res) => {
     try {
         let card = req.body;
@@ -92,7 +91,7 @@ router.patch("/:id", auth, async(req, res) => {
     try {
         const cardId = req.params.id;
         const userId = req.user._id;
-    
+
         const card = await likeCard(cardId, userId);
         return res.send(card);
     } catch (error) {

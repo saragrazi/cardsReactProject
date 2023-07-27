@@ -4,18 +4,15 @@ import { Box, CardActions, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CallIcon from "@mui/icons-material/Call";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { array, func, string } from "prop-types";
 import { useUser } from "../../../users/providers/UserProvider";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 import useCardActionBar from "./hooks/useCardActionBar";
 import useCards from "../../hooks/useCards";
-import cardType from "../../models/types/cardType";
 
 const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
   const { user } = useUser();
   const navigate = useNavigate();
-  console.log(setCards);
   const { handleLikeCard, handleDeleteCard } = useCards();
   const { onDelete, onLike, localLike, setLocalLike } = useCardActionBar(
     handleDeleteCard,
@@ -39,7 +36,7 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
         <Box>
           {user && (user?._id === userId || user.isAdmin) && (
             <IconButton
-              sx={{ "&:hover": { color: "black" } }}
+              sx={{ "&:hover": { backgroundColor: "#24b0e5", color: "white" } }}
               aria-label="delete"
               onClick={() => {
                 onDelete(cardId);
@@ -50,6 +47,7 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
           )}
           {user && user?._id === userId && (
             <IconButton
+              sx={{ "&:hover": { backgroundColor: "#24b0e5", color: "white" } }}
               aria-label="edit"
               onClick={() => navigate(`${ROUTES.EDIT_CARD}/${cardId}`)}
             >
@@ -62,17 +60,21 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
           ></Link>
         </Box>
         <Box>
-          <Link to={`tel:${card.phone}`}>
-            <IconButton
-              sx={{ "&:hover": { color: "#77DD77" } }}
-              aria-label="call"
-            >
-              <CallIcon />
-            </IconButton>
-          </Link>
+          <IconButton
+            sx={{ "&:hover": { backgroundColor: "#24b0e5", color: "white" } }}
+            aria-label="call"
+          >
+            <CallIcon />
+          </IconButton>
           {user && (
             <IconButton
-              sx={{ color: localLike ? "#F9516B" : "inherit" }}
+              sx={{
+                "&:hover": {
+                  backgroundColor: "#24b0e5",
+                  color: localLike ? "#d56c7c" : "white",
+                },
+                color: localLike ? "#d56c7c" : "inherit",
+              }}
               aria-label="like"
               onClick={() => onLike(cardId)}
             >
@@ -81,20 +83,8 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
           )}
         </Box>
       </CardActions>
-      {/* <CardDeleteDialog
-      
-        onDelete={handleDeleteCard}
-      /> */}
     </>
   );
 };
-
-// CardActionBar.propTypes = {
-//   cardId: string.isRequired,
-//   userId: string.isRequired,
-//   card: cardType.isRequired,
-//   cards: array.isRequired,
-//   setCards: func,
-// };
 
 export default CardActionBar;

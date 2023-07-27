@@ -33,7 +33,9 @@ const SearchBar = () => {
         location.pathname === "/admin-panel" ||
         location.pathname.match("/card-info") ||
         location.pathname.match("/create-card") ||
-        location.pathname.match("/edit-card")
+        location.pathname.match("/edit-card") ||
+        location.pathname.match("/my-cards") ||
+        location.pathname.match("/favorites")
           ? "none"
           : "inline-flex"
       }

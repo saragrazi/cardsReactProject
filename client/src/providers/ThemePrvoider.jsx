@@ -14,7 +14,7 @@ import React, {
 const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   const toggleDarkMode = useCallback(
     () => setIsDark((prev) => !prev),

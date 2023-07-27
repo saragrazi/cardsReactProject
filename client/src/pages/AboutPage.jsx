@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import PageHeader from "./../components/PageHeader";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 const AboutPage = () => {
   return (
@@ -14,11 +13,12 @@ const AboutPage = () => {
       />
 
       <Grid container spacing={2}>
-        <Grid item xs={12} md={8} alignSelf="center">
-          <b>About Us</b>
+        <Grid item xs={12} md={8} alignItem="center">
           <Typography>
-            Welcome to our site, Your Personal Business Card Management
-            Solution!{" "}
+            <p class="welcome">
+              Welcome to our site, Your Personal Business
+              <br /> Card Management Solution!{" "}
+            </p>
           </Typography>
           <b>Who We Are</b>{" "}
           <Typography>
@@ -69,19 +69,19 @@ const AboutPage = () => {
             page is an excellent opportunity to connect with your users and
             showcase the value your website provides.
           </Typography>
-          <Grid2>
-            <b>Good luck with your business card management website!</b>
-          </Grid2>
+          <p class="welcome1">
+            Good luck with your business card management website!
+          </p>
         </Grid>
         <Grid
           item
-          xs={4}
+          xs={7}
           sx={{
             display: { md: "flex", xs: "none" },
             justifyContent: "center",
           }}
         >
-          <img src="/assets/images/success.jpg" alt="card" width="100%" />
+          <img src="/assets/images/success.jpg" alt="success" width="100%" />
         </Grid>
       </Grid>
     </Container>

@@ -61,10 +61,10 @@ const CardDetailsPage = () => {
             justifyContent="flex-start"
             alignItems="flex-start"
           >
-            <Typography color="primary" variant="h4" mb={2}>
+            <Typography color="#1976d2" variant="h4" mb={2}>
               {card?.title}
             </Typography>
-            <Typography variant="h6" mb={5}>
+            <Typography variant="h6" mb={1}>
               {card?.subtitle}
             </Typography>
             <Typography>{card?.description}</Typography>
@@ -87,11 +87,10 @@ const CardDetailsPage = () => {
             <Typography>
               <b>Zip Code:</b> {card?.address.zip}
             </Typography>
-            <Box display="flex" height="100%" alignItems="flex-end">
-              <Typography>
-                <b>phone:</b> {card?.phone}
-              </Typography>
-            </Box>
+
+            <Typography>
+              <b>phone:</b> {card?.phone}
+            </Typography>
           </Box>
         </Box>
       </Container>

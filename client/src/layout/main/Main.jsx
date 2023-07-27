@@ -8,7 +8,7 @@ const Main = ({ children }) => {
     <Paper
       sx={{
         minHeight: "90vh",
-        backgroundColor: isDark ? "#333333" : "#e3f2fd",
+        backgroundColor: isDark ? "#333333" : "white",
       }}
     >
       {children}
