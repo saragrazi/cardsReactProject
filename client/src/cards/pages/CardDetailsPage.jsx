@@ -12,6 +12,7 @@ const CardDetailsPage = () => {
 
   useEffect(() => {
     handleGetCard(id);
+    // eslint-disable-next-line
   }, [id]);
 
   return (
