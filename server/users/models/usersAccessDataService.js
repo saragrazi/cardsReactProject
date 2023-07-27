@@ -4,7 +4,6 @@ const lodash = require("lodash");
 const { comparePassword } = require("../helpers/bcrypt");
 const { generateAuthToken } = require("../../auth/Providers/jwt");
 const { handleBadRequest } = require("../../utils/handleErrors");
-// const { LoginAttempts } = require("./mongodb/loginAttempt");
 
 const registerUser = async(normalizedUser) => {
     if (DB === "MONGODB") {
@@ -51,50 +50,6 @@ const loginUser = async({ email, password }) => {
 };
 
 
-// const logUserLoginFail = async(email, userIp) => {
-//     const expirationDate = new Date().getTime() + 60 * 60 * 24 * 1000
-//     const maximumTries = 2
-//         // When you check the code you can change 
-//         // to lower time so that you will see the logUserFailAttempt works
-//         // + 60 * 60
-//     if (DB === "MONGODB") {
-//         try {
-//             const bannedList = await LoginAttempts.find()
-//             bannedList.map((obj) => {
-//                 if (new Date().getTime() >= obj ? .expire) {
-//                     obj.delete()
-//                 }
-//             })
-//         } catch (error) {
-//             return Promise.reject(error);
-//         }
-
-//         try {
-//             const attempt = await LoginAttempts.findOne({ "$and": [{ email: email, ip: userIp }] });
-//             console.log(attempt);
-//             if (!attempt) {
-//                 let attemptRegistry = new LoginAttempts({ email: email, ip: userIp, expire: expirationDate, try: 0 });
-//                 attemptRegistry = await attemptRegistry.save();
-//                 return Promise.resolve("Authentication Error: Invalid email or password");
-//             }
-
-//             if (attempt ? .try >= maximumTries && new Date().getTime() < attempt ? .expire) {
-//                 throw new Error(`You are blocked until ${new Date(attempt?.expire)}`)
-//             }
-
-//             if (attempt ? .try >= maximumTries && new Date().getTime() >= attempt ? .expire) {
-//                 attempt.delete()
-//             }
-
-//             if (attempt) {
-//                 await attempt.updateOne({ try: attempt.try+1 });
-//                 return Promise.resolve("Authentication Error: Invalid email or password");
-//             }
-//         } catch (error) {
-//             return Promise.reject(error);
-//         }
-//     }
-// }
 
 const getUsers = async() => {
     if (DB === "MONGODB") {
@@ -129,7 +84,7 @@ const getUser = async(userId) => {
 const updateUser = async(userId, normalizedUser) => {
     if (DB === "MONGODB") {
         try {
-            let user = await User.findByIdAndUpdate(userId, normalizedUser) // זה לא היה קיים בכלל !!!!!
+            let user = await User.findByIdAndUpdate(userId, normalizedUser)
             return Promise.resolve({ userId, user });
         } catch (error) {
             error.status = 400;
@@ -172,4 +127,3 @@ exports.getUser = getUser;
 exports.updateUser = updateUser;
 exports.changeUserBusinessStatus = changeUserBusinessStatus;
 exports.deleteUser = deleteUser;
-// exports.logUserLoginFail = logUserLoginFail

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useUser } from "../../users/providers/UserProvider";
 import useCards from "../hooks/useCards";
 import PageHeader from "../../components/PageHeader";

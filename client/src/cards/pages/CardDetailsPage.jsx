@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 import useCards from "../hooks/useCards";
 import PageHeader from "../../components/PageHeader";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 const CardDetailsPage = () => {
   const { id } = useParams();
@@ -87,10 +88,15 @@ const CardDetailsPage = () => {
             <Typography>
               <b>Zip Code:</b> {card?.address.zip}
             </Typography>
-
-            <Typography>
-              <b>phone:</b> {card?.phone}
-            </Typography>
+            <Grid2>
+              <p class="welcome1">Contact Us Now</p>{" "}
+              <Typography>
+                <b>Phone:</b> {card?.phone}
+              </Typography>
+              <Typography>
+                <b>Email:</b> {card?.email}
+              </Typography>
+            </Grid2>
           </Box>
         </Box>
       </Container>

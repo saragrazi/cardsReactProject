@@ -54,18 +54,16 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
               <EditIcon />
             </IconButton>
           )}
-          <Link
-            to={`mailto:?subject=${card.title}&body=${card.subtitle}%0D%0APhone: ${card.phone} %0D%0A Business Description: ${card.description}`}
-            aria-label="edit"
-          ></Link>
+          <Link to={`tel:${card.phone}`}>
+            <IconButton
+              sx={{ "&:hover": { backgroundColor: "#24b0e5", color: "white" } }}
+              aria-label="call"
+            >
+              <CallIcon />
+            </IconButton>
+          </Link>
         </Box>
         <Box>
-          <IconButton
-            sx={{ "&:hover": { backgroundColor: "#24b0e5", color: "white" } }}
-            aria-label="call"
-          >
-            <CallIcon />
-          </IconButton>
           {user && (
             <IconButton
               sx={{

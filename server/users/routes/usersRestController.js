@@ -44,14 +44,10 @@ router.post("/login", async(req, res) => {
         const { error } = validateLogin(user);
         if (error)
             return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
+
         const token = await loginUser(req.body);
         return res.send(token);
     } catch (error) {
-        try {
-            await logUserLoginFail(req.body.email, req.ip)
-        } catch (error) {
-            return handleError(res, error.status || 403, error.message);
-        }
         return handleError(res, error.status || 500, error.message);
     }
 });
