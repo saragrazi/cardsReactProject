@@ -1,4 +1,4 @@
-# Business Card App - README
+# Business Card App
 
 ## Introduction
 
