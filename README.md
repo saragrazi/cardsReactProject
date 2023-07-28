@@ -1,4 +1,4 @@
-Business Card App
+Business Card App - README
 Introduction
 
 Business Card App is a web application built using React, Node.js, and MongoDB. It allows users to manage their business card information. Users can sign up, log in, and then add, edit, delete, and search for business card details. The site is responsive, meaning it can be used on different devices, such as desktops, tablets, and smartphones.
