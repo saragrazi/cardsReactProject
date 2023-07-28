@@ -58,7 +58,7 @@ bash
 cd ../server
 npm run dev
 
-The server will be accessible at http://localhost:5000.
+The server will be accessible at http://localhost:8181.
 Usage
 
     Open the client application in your web browser.
