@@ -23,6 +23,7 @@ const MyFavoriteCards = () => {
       }
     };
     getCards();
+    // eslint-disable-next-line
   }, []);
 
   return (

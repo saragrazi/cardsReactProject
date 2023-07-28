@@ -18,6 +18,7 @@ const CardsPage = () => {
 
   useEffect(() => {
     handleGetCards();
+    // eslint-disable-next-line
   }, []);
 
   const onDeleteCard = () => {};

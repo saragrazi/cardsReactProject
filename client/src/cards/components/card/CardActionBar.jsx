@@ -27,6 +27,7 @@ const CardActionBar = ({ cardId, userId, card, cards, setCards }) => {
         setLocalLike(true);
       }
     };
+
     isLiked();
   }, [card.likes, user?._id, setLocalLike]);
 
